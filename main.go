@@ -63,10 +63,10 @@ func retreiveData(data map[string]interface{}) Data {
 func printData(data Data) {
 	fmt.Printf("City                -> %v\n", data.city)
 	fmt.Printf("Current Temperature -> %vF\n", math.Ceil((data.currentTemperature-273.15)*9/5+32))
-	fmt.Printf("Visibility          -> %vft\n", data.visibility)
-	fmt.Printf("Pressure            -> %v%%\n", data.pressure)
-	fmt.Printf("Humidity            -> %v\n", data.humidity)
-	fmt.Printf("Wind Speed          -> %v\n", data.wind)
+	fmt.Printf("Visibility          -> %vm\n", data.visibility)
+	fmt.Printf("Pressure            -> %vhPa\n", data.pressure)
+	fmt.Printf("Humidity            -> %v%%\n", data.humidity)
+	fmt.Printf("Wind Speed          -> %vm/sec\n", data.wind)
 	fmt.Printf("Sky Description     -> %v\n", data.weather)
 }
 
