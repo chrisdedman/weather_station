@@ -26,8 +26,8 @@ type Data struct {
 	currentTemperature float64
 }
 
-// Retrieves the weather data from the interface 
-// and returns a structured Data object
+// Extracts relevant weather data from 
+// the API response and returns a Data object.
 func retreiveData(data map[string]interface{}) Data {
 	mainData, ok := data["main"].(map[string]interface{})
 	if !ok {
