@@ -11,6 +11,7 @@ import (
 	"time"
 )
 
+// Data represents the weather information for a specific location
 type Data struct {
 	pressure   interface{}
 	humidity   interface{}
@@ -25,7 +26,8 @@ type Data struct {
 	currentTemperature float64
 }
 
-// Retrieve and return the data from the interface
+// Retrieves the weather data from the interface 
+// and returns a structured Data object
 func retreiveData(data map[string]interface{}) Data {
 	mainData, ok := data["main"].(map[string]interface{})
 	if !ok {
@@ -59,7 +61,7 @@ func retreiveData(data map[string]interface{}) Data {
 	return weatherInfo
 }
 
-// Print out the fetched data to the console
+// Prints the weather data in a formatted manner
 func printData(data Data) {
 	fmt.Println()
 	fmt.Println("\tWeather Report for", data.city)
@@ -85,12 +87,13 @@ func convertToFahrenheit(kelvin float64) float64 {
 	return fahrenheit*9/5 + 32
 }
 
-// Format Unix timestamp to time in 24-hour format with timezone
+// Converts Unix timestamp to time in 24-hour format with timezone
 func formatTime(timestamp float64) string {
 	return time.Unix(int64(timestamp), 0).Format("15:04 MST")
 }
 
-// Error handler
+// logs any errors encountered 
+// during the program execution
 func errorHandler(err error) {
 	log.SetPrefix("Error: ")
 	log.SetFlags(0)
@@ -99,8 +102,8 @@ func errorHandler(err error) {
 	}
 }
 
-// Fetch the weather data from the API Station,
-// return a mapped interface with the data
+// Fetches weather data from the API endpoint 
+// and returns a mapped interface with the data
 func getAPIData(url string) map[string]interface{} {
 	api, err := http.Get(url)
 	errorHandler(err)
