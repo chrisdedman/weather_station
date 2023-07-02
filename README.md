@@ -9,26 +9,6 @@ This Go project allows you to retrieve weather data from the OpenWeatherMap API 
 - Supports retrieval of current temperature, pressure, humidity, visibility, wind speed, sunrise time, and sunset time.
 - Demonstrates how to handle HTTP requests, JSON parsing, and time manipulation in Go.
 
-## Example Output
-```shell
-Enter a location: quebec
-
-        Weather Report for Québec
-----------------------------------------------------
- Sky Description         | mist
- Current Temperature     | 78°F
- Feels Like              | 79°F
-----------------------------------------------------
- Visibility              | 10000 m
- Pressure                | 1010 hPa
- Humidity                | 75%
- Wind Speed              | 2.1 m/s
-----------------------------------------------------
- Sunrise Time            | 04:54 EDT
- Sunset Time             | 20:42 EDT
-----------------------------------------------------
-```
-
 ## Installation
 
 1. Clone the repository:
@@ -57,6 +37,25 @@ go build
 3. The program will make an API request to retrieve the weather data for the specified city.
 4. The fetched weather information, including current temperature, pressure, humidity, visibility, wind speed, sunrise time, and sunset time, will be displayed on the console.
 
+### Station Report Example
+```shell
+Enter a location: quebec
+
+        Weather Report for Québec
+----------------------------------------------------
+ Sky Description         | mist
+ Current Temperature     | 78°F
+ Feels Like              | 79°F
+----------------------------------------------------
+ Visibility              | 10000 m
+ Pressure                | 1010 hPa
+ Humidity                | 75%
+ Wind Speed              | 2.1 m/s
+----------------------------------------------------
+ Sunrise Time            | 04:54 EDT
+ Sunset Time             | 20:42 EDT
+----------------------------------------------------
+```
 ## Configuration
 
 Before running the program, make sure you have an API key from OpenWeatherMap. Follow these steps to set up your API key:
