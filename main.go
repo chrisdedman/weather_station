@@ -29,23 +29,19 @@ type Data struct {
 func retreiveData(data map[string]interface{}) Data {
 	mainData, ok := data["main"].(map[string]interface{})
 	if !ok {
-		fmt.Println("Error: Unable to access 'main' data")
-		os.Exit(1)
+		log.Fatal("Unable to access 'main' data")
 	}
 	windData, ok := data["wind"].(map[string]interface{})
 	if !ok {
-		fmt.Println("Error: Unable to access 'wind' data")
-		os.Exit(1)
+		log.Fatal("Unable to access 'wind' data")
 	}
 	weatherData, ok := data["weather"].([]interface{})[0].(map[string]interface{})
 	if !ok {
-		fmt.Println("Error: Unable to access 'weather' data")
-		os.Exit(1)
+		log.Fatal("Unable to access 'weather' data")
 	}
 	sysData, ok := data["sys"].(map[string]interface{})
 	if !ok {
-		fmt.Println("Error: Unable to access 'weather' data")
-		os.Exit(1)
+		log.Fatal("Unable to access 'weather' data")
 	}
 
 	weatherInfo := Data{
@@ -83,7 +79,7 @@ func printData(data Data) {
 	fmt.Println()
 }
 
-// Convert the temperature from Kelvin to fahrenheit
+// Convert temperature from Kelvin to fahrenheit
 func convertToFahrenheit(kelvin float64) float64 {
 	fahrenheit := kelvin - 273.15
 	return fahrenheit*9/5 + 32
@@ -122,7 +118,6 @@ func getAPIData(url string) map[string]interface{} {
 
 func main() {
 	api_key := // ------- add your key API here ------- //
-
 	fmt.Printf("Enter a location: ")
 	scanner := bufio.NewScanner(os.Stdin)
 
