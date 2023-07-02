@@ -1,6 +1,6 @@
 ## Go Weather Station
 
-Golang program to find current weather details of any city using OpenWeatherMap API.
+This Go program retrieves weather data from the OpenWeatherMap API based on a user-provided city name. It fetches information such as current temperature, pressure, humidity, visibility, wind speed, sunrise, and sunset. The program uses HTTP requests and JSON parsing to interact with the API and provides formatted weather details to the user. It serves as a simple example of making API calls and handling JSON data in Go.
 
 #### The informations are:
 * User input city
