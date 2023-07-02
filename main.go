@@ -96,6 +96,8 @@ func formatTime(timestamp float64) string {
 
 // Error handler
 func errorHandler(err error) {
+	log.SetPrefix("Error: ")
+	log.SetFlags(0)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -119,8 +121,6 @@ func getAPIData(url string) map[string]interface{} {
 }
 
 func main() {
-	log.SetPrefix("Error: ")
-	log.SetFlags(0)
 	api_key := // ------- add your key API here ------- //
 
 	fmt.Printf("Enter a location: ")
