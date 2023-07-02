@@ -18,7 +18,10 @@ type Data struct {
 	visibility interface{}
 	weather    interface{}
 	wind       interface{}
-
+	
+	feels_like         float64
+	sunrise            float64
+	sunset             float64
 	currentTemperature float64
 }
 
@@ -32,6 +35,7 @@ func retreiveData(data map[string]interface{}) Data {
 
 	pressure := mainData["pressure"]
 	humidity := mainData["humidity"]
+	feels_like := mainData["feels_like"].(float64)
 	currentTemperature := mainData["temp"].(float64)
 	city := data["name"]
 	visibility := data["visibility"]
@@ -47,6 +51,12 @@ func retreiveData(data map[string]interface{}) Data {
 		os.Exit(1)
 	}
 
+	sysData, ok := data["sys"].(map[string]interface{})
+	if !ok {
+		fmt.Println("Error: Unable to access 'weather' data")
+		os.Exit(1)
+	}
+
 	weatherInfo := Data{
 		city:               city,
 		pressure:           pressure,
@@ -55,19 +65,27 @@ func retreiveData(data map[string]interface{}) Data {
 		currentTemperature: currentTemperature,
 		weather:            weatherData["description"],
 		wind:               windData["speed"],
+		feels_like:         feels_like,
+		sunrise:            sysData["sunrise"].(float64),
+		sunset:             sysData["sunset"].(float64),
 	}
 	return weatherInfo
 }
 
 // Print out to the console the data fetched
 func printData(data Data) {
+	fmt.Println()
 	fmt.Printf("City                -> %v\n", data.city)
 	fmt.Printf("Current Temperature -> %vF\n", math.Ceil((data.currentTemperature-273.15)*9/5+32))
+	fmt.Printf("Feels Like          -> %vF\n", math.Ceil((data.feels_like-273.15)*9/5+32))
 	fmt.Printf("Visibility          -> %vm\n", data.visibility)
 	fmt.Printf("Pressure            -> %vhPa\n", data.pressure)
 	fmt.Printf("Humidity            -> %v%%\n", data.humidity)
 	fmt.Printf("Wind Speed          -> %vm/sec\n", data.wind)
 	fmt.Printf("Sky Description     -> %v\n", data.weather)
+	fmt.Printf("Sunrise             -> %v\n", time.Unix(int64(data.sunrise), 0).Format("15:04 MST"))
+	fmt.Printf("Sunset              -> %v\n", time.Unix(int64(data.sunset), 0).Format("15:04 MST"))
+	fmt.Println()
 }
 
 // Error handler
