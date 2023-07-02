@@ -115,7 +115,11 @@ func getAPIData(url string) map[string]interface{} {
 	var data map[string]interface{}
 	err = json.Unmarshal(body, &data)
 	errorHandler(err)
-
+	
+	if data["cod"] != float64(200) {
+		log.Fatal(data["message"])
+		os.Exit(1)
+	}
 	return data
 }
 
