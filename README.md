@@ -84,4 +84,3 @@ This project relies on the following Go packages:
 
 * The project uses the OpenWeatherMap API to retrieve weather data. Visit their website for more information: [openweathermap.org](https://openweathermap.org/).
 * This project was developed as a learning exercise for working with APIs, JSON parsing, and time manipulation in Go.
-* Feel free to customize this README description according to your project's specific details and requirements.
